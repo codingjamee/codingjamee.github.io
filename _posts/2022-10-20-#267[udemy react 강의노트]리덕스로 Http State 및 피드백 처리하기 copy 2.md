@@ -10,8 +10,8 @@ tags:
 toc: true
 toc_sticky: false
 
-date: 2020-10-20
-last_modified_at: 2020-10-20
+date: 2022-10-20
+last_modified_at: 2022-10-20
 ---
 
 # 리덕스로 Http State 및 피드백 처리하기
@@ -28,7 +28,7 @@ last_modified_at: 2020-10-20
 ```jsx
 import classes from "./Notification.module.css";
 
-const Notification = props => {
+const Notification = (props) => {
   let specialClasses = "";
 
   if (props.status === "error") {
@@ -60,8 +60,8 @@ export default Notification;
 
 ```jsx
 function App() {
-  const showCart = useSelector(state => state.ui.cartIsVisible);
-  const cart = useSelector(state => state.cart);
+  const showCart = useSelector((state) => state.ui.cartIsVisible);
+  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
     const sendCartData = async () => {
@@ -317,8 +317,8 @@ action object를 리턴하는 액션 크리에이터 함수를 직접 작성한�
 <br><br>
 
 ```jsx
-const sendCartData = cartData => {
-  return dispatch => {
+const sendCartData = (cartData) => {
+  return (dispatch) => {
     dispatch();
   };
 };
@@ -348,8 +348,8 @@ dispatch해준다.
 cartslice.js파일
 
 ```jsx
-export const sendCartData = cart => {
-  return dispatch => {
+export const sendCartData = (cart) => {
+  return (dispatch) => {
     dispatch(
       uiSliceActions.showNotification({
         status: "pending",
@@ -396,7 +396,7 @@ const cartSlice = createSlice({
   reducers: {
     add(state, action) {
       const newItem = action.payload;
-      const existingItem = state.items.find(item => item.id === newItem.id);
+      const existingItem = state.items.find((item) => item.id === newItem.id);
       state.totalQuantity++;
       if (!existingItem) {
         state.items.push({
@@ -413,10 +413,10 @@ const cartSlice = createSlice({
     },
     remove(state, action) {
       const removeItemId = action.payload;
-      const existingItem = state.items.find(item => item.id === removeItemId);
+      const existingItem = state.items.find((item) => item.id === removeItemId);
       state.totalQuantity--;
       if (existingItem.quantity === 1) {
-        state.items = state.items.filter(item => item.id !== removeItemId);
+        state.items = state.items.filter((item) => item.id !== removeItemId);
       } else {
         existingItem.quantity--;
         existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
@@ -425,8 +425,8 @@ const cartSlice = createSlice({
   },
 });
 
-export const sendCartData = cart => {
-  return async dispatch => {
+export const sendCartData = (cart) => {
+  return async (dispatch) => {
     dispatch(
       uiSliceActions.showNotification({
         status: "pending",
@@ -562,7 +562,7 @@ get request가 기본값이기 때문이다.
 
 ```jsx
 export const fetchCartData = () => {
-  return dispatch => {
+  return (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
         "https://react-http-.firebaseio.com/cart.json"
@@ -591,7 +591,7 @@ notification 액션 객체를 넣어준다.
 
 ```jsx
 export const fetchCartData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
         "https://react-http-.firebaseio.com/cart.json"
@@ -653,7 +653,7 @@ const sendRequest = async () => {
 
 ```jsx
 export const fetchCartData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
         "https://react-http-55f5b-default-rtdb.firebaseio.com/cart.json"
