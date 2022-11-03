@@ -30,6 +30,15 @@ error:0308010C:digital envelope routines::unsupported
 (번역 실력 부족함)
 
 <br><br>
+
+## 번역글에 들어가기 앞서 오류의 이유
+
+<br><br>
+ubuntu로 넘어가고 나니, create-react-app이 잘 되지 않았다.  
+그것을 해결하는 과정에서 nvm을 설치하여 npm과 node버전을 최신버전으로 설치하였는데,  
+그러고 났더니 난 오류같다. 아래의 번역글에도 서두부분에 나온다.
+
+<br><br>
 To solve the "error:0308010C:digital envelope routines::unsupported", set the NODE_OPTIONS environment variable to --openssl-legacy-provider when running your development server, or change your Node.js version to the LTS by issuing the nvm install --lts command.
 
 <br>
