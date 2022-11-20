@@ -373,5 +373,150 @@ meetups는 아래에서 추가한 meetups프로퍼티에서 온 것이다.
 ```
 
 <br><br>
+이제 사전렌더링도 했고 전체 HTML코드도 포함하고 있다.  
+당연히 검색 엔진에도 좋다.  
+이제 클라이언트 측 컴포넌트의 두 번째 렌더링 사이클에서 데이터를 받는 것이 아니라  
+초기에 이 페이지를 사전 렌더링하기 전에 빌드 프로세스에서 받으니까 말이다.  
+NextJS의 주요기능 중 하나다.
 <br><br>
+getStaticProps를 완전히 이해하고 무엇을 할 수 있는지 알아보기 위해  
+dev서버를 끊고 npm run build를 실행해본다.  
+<br><br>
+
+```
+npm run build
+```
+
+<br><br>
+이 명령어는 배포하기 전에 실행해야 하는 것이다.  
+아래와 같은 내용이 출력된다.
+
+<br><br>
+
+```
+info  - Linting and checking validity of types
+info  - Creating an optimized production build
+info  - Compiled successfully
+info  - Collecting page data
+info  - Generating static pages (5/5)
+info  - Finalizing page optimization
+
+Route (pages)                              Size     First Load JS
+┌ ● /                                      923 B          82.5 kB
+├   └ css/901ad268adf760c9.css             408 B
+├   /_app                                  0 B            81.6 kB
+├ ○ /[meetupId]                            593 B          82.2 kB
+├   └ css/181180052d07d175.css             81 B
+├ ○ /404                                   212 B          81.8 kB
+└ ○ /new-meetup                            997 B          82.6 kB
+    └ css/6b06f286d8345586.css             360 B
++ First Load JS shared by all              82 kB
+  ├ chunks/framework-0f397528c01bc177.js   45.7 kB
+  ├ chunks/main-e71c796c4d7cc2e4.js        31.8 kB
+  ├ chunks/pages/_app-117c1b64f5fa6e8c.js  3.07 kB
+  ├ chunks/webpack-2369ea09e775031e.js     1.02 kB
+  └ css/555e77c84496ecf7.css               464 B
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+```
+
+<br><br>
+static pages를 5개 생성했다.
+
+```
+info  - Generating static pages (5/5)
+```
+
+<br><br>
+
+어떤 페이지를 만들었는지도 볼 수 있다.  
+슬래시 뒤에 아무것도 없는 루트페이지를 만들었고,  
+/[meetupId]는 동적 페이지고 404페이지는 기본값으로 자동으로 만들어진다.  
+유요하지 않은 URL을 입력한 경우에 사용한다.  
+그리고 /new-meetup페이지도 있다.  
+<br><br>
+
+```
+Route (pages)                              Size     First Load JS
+┌ ● /                                      923 B          82.5 kB
+├   └ css/901ad268adf760c9.css             408 B
+├   /_app                                  0 B            81.6 kB
+├ ○ /[meetupId]                            593 B          82.2 kB
+├   └ css/181180052d07d175.css             81 B
+├ ○ /404                                   212 B          81.8 kB
+└ ○ /new-meetup                            997 B          82.6 kB
+    └ css/6b06f286d8345586.css             360 B
+
+```
+
+<br><br>
+
+그리고 페이지 옆에 아이콘들이 있다.  
+하나는 채워진 원이고 나머지는 비어있는 원이다.  
+밑을 보면 범례가 있는데, 채워진 원은 정적으로 생성된 사이트를 의미하고,  
+<br><br>
+
+# SSG 정적 사이트 생성(Static Site Generation)
+
+<br><br>
+SSG는 정적 사이트 생성(Static Site Generation)의 약자다.  
+HTML로 자동 생성된 것이다.  
+JSON은 페이지가 싱글 페이지 애플리케이션으로 전환되면 데이터를 미리 가져오는데 사용된다.  
+<br><br>
+
+```
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
+```
+
+<br><br>
+
+<br><br>
+
+# 비어있는 원은 정적 생성
+
+<br><br>
+
+```
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+
+```
+
+<br><br>
+거의 비슷하지만 유일한 차이점은 초기엔 props가 없다는 것이다.  
+따라서 가져온 초기 데이터가 있고 루트 페이지에서만 데이터를 가져온다.  
+getStaticProps를 추가한 페이지니까 채워진 원으로 표시되어 있는 것이다.  
+<br><br>
+
+```
+┌ ● /                                      923 B          82.5 kB
+├   └ css/901ad268adf760c9.css             408 B
+```
+
+<br><br>
+new-meetup페이지에는 아무 데이터도 가져올 필요가 없다.  
+거기서는 form을 렌더링할 뿐이다.  
+아무 데이터도 필요 없고 서버에서 어떤 데이터도 받아오지 않는다.  
+<br><br>
+new-meetup>index.js 파일
+<br><br>
+
+```jsx
+import NewMeetupForm from "../../components/meetups/NewMeetupForm";
+
+const NewMeetup = () => {
+  const addMeetupHandler = (enteredMeetupData) => {
+    console.log(enteredMeetupData);
+  };
+  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
+};
+
+export default NewMeetup;
+```
+
+<br><br>
+그래서 new-meetup페이지에는 아무 컨텐츠가 없는 정적 페이지로 남아있다.  
+[meetupId]페이지는 나중에 SSG페이지로 바꿀 것이다.
+하지만 지금은 시작페이지, 즉 루트 페이지만 정적으로 생성된 사이트다.  
 <br><br>
