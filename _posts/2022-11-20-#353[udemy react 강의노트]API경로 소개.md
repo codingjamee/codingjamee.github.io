@@ -36,10 +36,10 @@ export const getServerSideProps = async (context) => {
 ```
 
 <br><br>
-지금까지는 더미 데이터로 작업했다. 실제로 패치된 건 아니다.  
+지금까지는 더미 데이터로 작업했다. 실제 fetch로 데이터를 가져온 건 아니다.  
 그리고 meetupID 페이지가 있다. 리턴 문장에서 하드 코드 데이터도 있다.
-하지만 전혀 현실적이지는 않다.
-대신 meetup 추가 페이지가 있다. meetupData를 입력할 수 있다.
+이건 전혀 현실적이지 않다.
+대신 meetupAddPage가 있다. 거기서 meetupData를 입력할 수 있다.
 
 <br><br>
 
@@ -77,8 +77,9 @@ export const getStaticProps = async (context) => {
 # 또 다른 중요한 넥스트 JS의 특징 : API 라우트
 
 <br><br>
-API 라우트는 특별한 라우트, 특별한 페이지다. 이건 HTML 코드를 리턴하지 않는다.
-대신 HTTP 요청을 받는다. 그리고 패치를 포스트하고 요청을 삭제한다. JSON 데이터가 부착되어 있다.  
+API 라우트는 특별한 라우트, 특별한 페이지다.  
+HTML 코드를 리턴하지 않고, 대신 HTTP 요청을 받는다.  
+패치를 포스트하고 요청을 삭제한다. JSON 데이터가 부착되어 있다.  
 그리고 우리가 필요한 걸 하면 된다.
 <br><br>
 예를들어 데이터베이스에 데이터를 저장하고 JSON 데이터를 리턴하는 것이다.  
@@ -124,8 +125,8 @@ export default handler;
 ```
 
 <br><br>
-이 함수는 요청을 받을 것이고 객체에 응답할 것이다. node.js와 express.js에서 받을 것이다.  
-요청 객체는 들어오는 요청에 관한 데이터를 포함합니다.  
+이 함수는 요청을 받을 것이고 객체에 return할 것이다. node.js와 express.js에서 받을 것이다.  
+요청 객체는 들어오는 요청에 관한 데이터를 포함한다.  
 응답 객체는 응답을 보낼 때 필요하다.
 
 <br><br>
@@ -136,7 +137,7 @@ const handler = (req, res) => {};
 
 <br><br>
 이 응답 객체에서 헤더나 요청 바디를 받을 수 있다.  
-그리고 method property를 사용헤 req.method를 입력한다.
+그리고 method 속성을 사용헤 req.method를 입력한다.
 
 <br><br>
 
@@ -164,8 +165,8 @@ export default handler;
 ```
 
 <br><br>
-if일 때만 실행한다. 다른 종류의 요청에는 아무것도 하지 않는다.
-따라서 이 라우트에서 포스트 요청일 때만 코드를 트리거한다.
+if 조건일 때만 실행한다. 다른 종류의 요청에는 아무것도 하지 않는다.  
+따라서 이 라우트에서 포스트 요청일 때만 코드를 트리거한다.  
 그리고 req.body에 접속해서 데이터를 받을 수 있다.
 
 <br><br>
@@ -187,7 +188,7 @@ const handler = (req, res) => {
 다만 우리가 요청을 보낼 때 API 라우터에 맞는 데이터를 보냈는지 확실히 해야 한다.  
 <br><br>
 지금은 데이터 밖에서 데이터를 받을 것이다.  
-따라서 요청 바디 밖에서 객체 디스트럭쳐링을 사용할것이다.
+따라서 요청 바디 밖에서 객체 디스트럭쳐링을 사용할것이다.  
 타이틀필드, 이미지 필드, 주소 필드, 설명 필드를 받을 예정이다.  
 이 네 가지 필드를 요청 바디에서 받고 싶다.  
 그리고 그것들을 데이터베이스에 저장할 수 있다.  
@@ -270,16 +271,22 @@ npm run dev
 MongoClient object 같은 것을 MongoDB로부터 가져올 수 있다.
 
 <br><br>
+new-meetup.js파일
 
 ```jsx
 import { MongoClient } from "mongodb";
 ```
 
 <br><br>
+
+# MongoClient.connect메서드
+
+<br><br>
 new-meetup.js파일의 handler함수 안에서 코드를 실행할 수 있는데  
 MongoClient를 사용하여 connect method를 호출한다.
 
 <br><br>
+new-meetup.js파일
 
 ```jsx
 import { MongoClient } from "mongodb";
@@ -298,9 +305,13 @@ export default handler;
 ```
 
 <br><br>
-connect method는 이 connect 문자열을 필요로 한다.  
-Database에서 connect를 눌렀을 때 나온 문자열이다.  
-이 문자열을 복사하고 connect method의 매개 변수로 붙여 넣기 한다.
+
+# connect 하기위한 문자열
+
+<br><br>
+connect method는 아래의 연결 문자열을 필요로 한다.  
+mongodb 사이트의 Database섹션에서 connect를 눌렀을 때 나온 문자열이다.  
+이 문자열을 복사하여 connect method의 매개 변수로 붙여 넣기 한다.
 
 <br><br>
 
@@ -341,7 +352,7 @@ const handler = async (req, res) => {
     const { title, image, address, description } = data;
 
     await MongoClient.connect(
-      'mongosh "mongodb+srv://cluster0.7lqdxbj.mongodb.net/myFirstDatabase" --apiVersion 1 --username mongo-user1'
+      "mongodb+srv://mongo-user1:<password>@cluster0.7lqdxbj.mongodb.net/meetups?retryWrites=true&w=majority"
     );
   }
 };
@@ -361,7 +372,11 @@ const client = await MongoClient.connect(
 ```
 
 <br><br>
-이제 client object에서 모든 db method를 통해  
+
+# client.db 메서드
+
+<br><br>
+이제 client 객체에서 .db method를 통해  
 여기 meetups에 연결 중인 데이터베이스를 확보할 수 있다.
 
 <br><br>
@@ -374,7 +389,7 @@ const handler = async (req, res) => {
     const { title, image, address, description } = data;
 
     const client = await MongoClient.connect(
-      'mongosh "mongodb+srv://cluster0.7lqdxbj.mongodb.net/myFirstDatabase" --apiVersion 1 --username mongo-user1'
+      "mongodb+srv://mongo-user1:<password>@cluster0.7lqdxbj.mongodb.net/meetups?retryWrites=true&w=majority"
     );
     const db = client.db();
   }
@@ -394,7 +409,7 @@ const handler = async (req, res) => {
     const { title, image, address, description } = data;
 
     const client = await MongoClient.connect(
-      'mongosh "mongodb+srv://cluster0.7lqdxbj.mongodb.net/myFirstDatabase" --apiVersion 1 --username mongo-user1'
+      'mongodb+srv://mongo-user1:<password>@cluster0.7lqdxbj.mongodb.net/meetups?retryWrites=true&w=majority'
     );
     const db = client.db();
 
@@ -403,6 +418,10 @@ const handler = async (req, res) => {
 };
 
 ```
+
+<br><br>
+
+# db.collection 메서드
 
 <br><br>
 이제 MongoDB는 문서들로 가득 찬 컬렉션을 작동시키는 NoSQL 데이터베이스가 된다.  
@@ -431,6 +450,10 @@ meetups로 동일하게 설정할 수 있다.
 ```jsx
 const meetupsCollection = db.collection("meetups");
 ```
+
+<br><br>
+
+# insertOne 메서드
 
 <br><br>
 이제 meetupsCollection을 확보했다. 이 meetupsCollection에서는  
@@ -476,6 +499,10 @@ console.log(result);
 우선 여기서 이것이 잘 작동되는지 살펴보자.  
 원한다면 오류 처리를 추가하기 위해 try, catch로 감쌀 수 있다.  
 <br><br>
+
+# client.close 데이터베이스 연결 차단
+
+<br><br>
 이제 작업을 마쳤기 때문에 client.close를 불러서 데이터베이스 연결을 차단한 다음  
 여기의 res 객체를 사용하여 응답을 다시 보내야 한다.  
 요청이 들어오면 데이터베이스에 데이터를 저장하고 다시 응답을 보내야 하기 때문이다.  
@@ -505,6 +532,10 @@ const handler = async (req, res) => {
 ```
 
 <br><br>
+
+# res 객체를 사용하여 응답다시 보내기
+
+<br><br>
 되돌아오는 응답의 HTTP status 코드를 설정하기 위해  
 응답을 호출할 수 있는 status method를 갖게 되는데  
 예를 들어, 201 status 코드는 어떤 것이 성공적으로 삽입되었음을 나타낸다.
@@ -516,7 +547,11 @@ res.status(201);
 ```
 
 <br><br>
-그런 다음, 여기서 JSON 호출을 연결하여 발신 응답에 추가될 JSON 데이터를 준비할 수 있다.
+
+# 응답에 추가될 JSON 데이터
+
+<br><br>
+그런 다음, 여기서 JSON 호출을 연결하여 발신 응답에 추가될 JSON 데이터를 준비할 수 있다.  
 또한, 예를 들어, Meetup inserted라는 메시지 키를 입력할 수도 있다.
 
 <br><br>
@@ -527,62 +562,8 @@ res.status(201).json({ message: "Meetup inserted" });
 
 <br><br>
 물론, 어떤 응답을 되돌아오게 할지는 선택해서 입력하면 된다.  
-데이터베이스에 meetups을 삽입할 기본 api 경로를 가지고 있으므로  
+데이터베이스에 meetups를 삽입할 기본 api 경로를 가지고 있으므로  
 다음 단계에서는 이 api 경로를 trigger하고 코드를 사용할 수 있도록  
 이 React Meetups 정보를 작성 및 제출하여 이 api 경로에 request를 보내본다.
 
-<br><br>
-
-# API 경로로 Http 요청 보내기
-
-<br><br>
-api 경로로 request를 보내는 것은 어떤 api나 백엔드로 request를 보내는 작업과 같다.  
-NewMeetupForm.js 컴포넌트에서 수집한 데이터를 전달하기 위해 props.onAddMeetup을 호출했다.
-<br><br>
-
-따라서 해당 데이터로 작업하기 위해 NewMeetupForm을 사용하는 컴포넌트인  
-NewMeetupPage로 이동해야 한다. 거기엔 수집한 데이터를 가져오는 addMeetupHandler가 있다.
-이제 여기서 api 경로로 request를 보낸다.
-
-<br><br>
-우리가 알고 있듯이 request를 보내면 되는데,  
-예를 들어, 내장된 fetch function이나 axios와 같은 타사 패키지를 사용하여 보낼 수 있다.  
-이번에는 fetch function과 async await를 사용해 보자.
-함수를 async 함수로 변경하고 const response = await를 입력한다.
-
-<br><br>
-
-```jsx
-import NewMeetupForm from "../../components/meetups/NewMeetupForm";
-
-const NewMeetupPage = () => {
-  const addMeetupHandler = async (enteredMeetupData) => {
-    const response = await fetch();
-  };
-  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
-};
-
-export default NewMeetupPage;
-```
-
-<br><br>
-그다음 request를 보낼 URL을 입력한다. https://some-domain.com을 입력해보자.  
-만약 외부 API라면 경로를 입력해야 하지만 여기에서는 내부 API를 사용하고 있으므로  
-이 페이지를 제공하는데 사용되는 같은 서버에 의해 관리된다.  
-따라서 같은 서버에 request를 보내지만, 해당 서버에 다른 경로에도 보낼 수 있는  
-절대 경로를 생성할 수 있다. 경로로 특별한 api 폴더 이름인 /api를 입력하고  
-파일 확장자 없이 파일 이름인 /new-meetup을 입력한다.
-
-<br><br>
-
-```jsx
-const response = await fetch("https://some-domain.com");
-```
-
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
 <br><br>
