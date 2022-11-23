@@ -37,8 +37,8 @@ export const getServerSideProps = async (context) => {
 
 <br><br>
 지금까지는 더미 데이터로 작업했다. 실제 fetch로 데이터를 가져온 건 아니다.  
-그리고 meetupID 페이지가 있다. 리턴 문장에서 하드 코드 데이터도 있다.
-이건 전혀 현실적이지 않다.
+그리고 meetupID 페이지가 있다. 리턴 문장에서 하드 코드 데이터도 있다.  
+이건 전혀 현실적이지 않다.  
 대신 meetupAddPage가 있다. 거기서 meetupData를 입력할 수 있다.
 
 <br><br>

@@ -94,7 +94,7 @@ export const getStaticProps = async (context) => {
 ```
 
 <br><br>
-meetupId는 대괄호 사이에 가지고 있는 ID다.  
+meetupId는 파일명인 대괄호 사이에 가지고 있는 ID다.  
 그리고 이게 구체적인 meetupId가 될 것이다.  
 이 meetup을 표시한다.  
 따라서 meetupId로 ID를 설정한다.  
@@ -141,7 +141,7 @@ getStaticProps와 getServerSideProps처럼 말이다.
 <br><br>
 만약 getServerSideProps를 이용하는게 아니고 getStaticPaths도 이용하지 않는다면  
 getStaticProps를 이용해야 한다.  
-이제 다른 곳에서 getStaticPaths도 export 해야 한다. async await 도 사용할 수 있다.  
+이제 다른 곳에서 getStaticPaths도 export 해야 한다. async await도 사용할 수 있다.  
 <br><br>
 getStaticPaths를 이해하기 위해, getStaticProps를 다시 생각해 봐야 한다.  
 getStaticProps를 사용해 페이지는 빌드 프로세스 중에 프리제너레이트 되었다.  
@@ -160,7 +160,7 @@ export const getStaticProps = async (context) => {
 
 <br><br>
 하지만 사용자가 URL의 특정 밸류로 페이지에 방문했을 때 프리제너레이트 되는 게 아니다.  
-빌드 프로세스에서 되는거다. 모든 URL, 모든 meetupId밸류에서 프리제너레이트 해야 한다.
+빌드 프로세스에서 되는거다. 모든 URL, 모든 meetupId밸류에서 프리제너레이트 해야 한다.  
 만약 프리 제너레이트 하지 않은 페이지인 ID로 입장하면 404에러를 보게 될 것이다.  
 하지만 그런식으로 작동하기 때문에 getStaticPaths를 추가해야 한다.  
 <br><br>
@@ -194,8 +194,10 @@ export const getStaticPaths = async () => {
 };
 ```
 
-    여기 params객체에 meetupId키를 추가하기로 한다. 그리고 구체적 값을 입력한다.
-    meetupId를 위해 이페이지는 프리제너레이트 되어야 한다.
+<br><br>
+<br><br>
+여기 params객체에 meetupId키를 추가하기로 한다. 그리고 구체적 값을 입력한다.
+meetupId를 위해 이페이지는 프리제너레이트 되어야 한다.
 
 <br><br>
 
@@ -214,8 +216,8 @@ export const getStaticPaths = async () => {
 ```
 
 <br><br>
-그리고 value가 여러 개라면 (m1, m2처럼) 아래와 같이 두개의 params객체를 가져야 하고  
-meetupId에 m2를 입력해야 한다.  
+그리고 value가 여러 개라면 (m1, m2처럼) 아래와 같이  
+두개의 params객체를 가져야 하고 meetupId에 m2를 입력해야 한다.  
 <br><br>
 
 ```jsx
@@ -247,7 +249,7 @@ getStaticProps가 있고 이 상태로 리로드 하면 더이상 getStaticPaths
 
 <br><br>
 
-## 또다른 에러, "The `'fallback'` key must be returned from getStaticPaths in /[meetuId]
+## 또다른 에러, "The `'fallback'` key must be returned from getStaticPaths in /[meetuId]"
 
 <br><br>
 이 에러를 없애려면 다른 설정을 해야 한다. 리턴 객체안의 paths이전에 뭔가를 추가해야 한다.  
@@ -281,7 +283,7 @@ export const getStaticPaths = async () => {
 
 <br><br>
 들어오는 요청에 관해서 서버에서 meetupId로 동적으로 만들 것이다. 폴백은 훌륭한 도구다.  
-왜냐하면 특정 미트 업 ID 밸류에 관해서 페이지 중 일부를 프리 제너레이트하기 때문이다.  
+왜냐하면 특정 meetupID 밸류에 관해서 페이지 중 일부를 프리 제너레이트하기 때문이다.  
 예를 들어, 주기적으로 방문 되는 페이지에서 요청이 들어올 때 잃어버린 부분을  
 동적으로 프리 제너레이트한다.  
 <br><br>
@@ -292,16 +294,16 @@ export const getStaticPaths = async () => {
 인기 있는 몇 개만 하고 싶을 수 있으니까 말이다.
 
 <br><br>
-이제 폴백을 추가했으니까 저장하고 리로드하면 첫 번째 미트 업을 성공적으로 로드했다.
+이제 폴백을 추가했으니까 저장하고 리로드하면 첫 번째 미트 업을 성공적으로 로드했다.  
 m2를 입력해도 성공한다. 그런데 m3를 입력하면 404페이지가 나온다.  
 폴백을 false로 설정했기 때문이다. m3는 지원되는 매개변수가 아닌 것이다.
 <br><br>
 getStaticPaths는 또 다른 중요한 함수다. 동적 페이지에서 필요하고,  
 넥스트 JS에게 어떤 동적 매개변수 밸류의 어떤 페이지가 프리 제너레이트되어야 하는지 말해준다.  
 getStaticProps는 모든 페이지를 실행한다.  
-따라서 모든 미트 업 ID 밸류가 데이터를 패치하고 미트 업의 프랍을 리턴하도록 한다.  
+따라서 모든 meetupID 밸류가 데이터를 패치하고 미트 업의 프랍을 리턴하도록 한다.  
 <br><br>
-그리고, 여기서 미트 업 ID를 console.log했는데 터미널에서 볼 수 있다.  
+그리고, 여기서 meetupID를 console.log했는데 터미널에서 볼 수 있다.  
 개발자 도구에서도, 브라우저에서도, 콘솔에서도 볼 수 없다.  
 이건 코드기 때문이다. getStaticProps 대신 오는 코드고 빌드 타임에 실행되는 것이다.  
 그리고 개발 서버에서 돌아갈 때 모든 들어오는 요청이 있을 때마다 실행된다.  
@@ -309,11 +311,3 @@ getStaticProps는 모든 페이지를 실행한다.
 하지만 개발자 서버 사이드에서만 실행된다.  
 따라서 브라우저에서는 볼 수 없고 개발자 서버의 터미널에서만 볼 수 있는 것이다.
 이런 식으로 getStaticProps가 동적 페이지에서 작동하고 getStaticPaths가 작동한다.
-
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
