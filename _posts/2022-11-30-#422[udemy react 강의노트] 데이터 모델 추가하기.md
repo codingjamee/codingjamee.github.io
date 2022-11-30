@@ -3,16 +3,15 @@ title: "#420[udemy react 강의노트] Props 및 typescript 작업하기"
 excerpt: "React typescript project"
 published: true
 categories:
-- Blog
-  tags:
-- [React, typescript, project, Props]
+  - Blog
+tags:
+  - [React, typescript, project, Props]
 
 toc: true
 toc_sticky: false
 
 date: 2022-11-30
 last_modified_at: 2022-11-30
-
 ---
 
 <br><br>
