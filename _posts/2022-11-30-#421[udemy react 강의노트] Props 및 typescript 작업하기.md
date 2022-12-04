@@ -1,5 +1,5 @@
 ---
-title: "#420[udemy react 강의노트] Props 및 typescript 작업하기"
+title: "#421[udemy react 강의노트] Props 및 typescript 작업하기"
 excerpt: "React typescript project"
 published: true
 categories:
