@@ -1,4 +1,6 @@
 ---
+layout: post
+categories: ["udemy","react-study"]
 title: "#385[udemy react 강의노트] Store로 커스텀 훅 시작하기"
 excerpt: "React animation"
 published: true
