@@ -1,19 +1,18 @@
 ---
+layout: udemy-react
 title: "#432[udemy react 강의노트] tsconfig.json탐색"
 excerpt: "React typescript context api"
 published: true
 categories:
-
-- Blog
-  tags:
-- [React, typescript, tsconfig.json]
+  - Blog
+tags:
+  - [React, typescript, tsconfig.json]
 
 toc: true
 toc_sticky: false
 
 date: 2022-12-04
 last_modified_at: 2022-12-04
-
 ---
 
 # tsconfig.json탐색

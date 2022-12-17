@@ -3,17 +3,15 @@ title: "#430[udemy react 강의노트] 컨텍스트 API 및 Typescript"
 excerpt: "React typescript context api"
 published: true
 categories:
-
-- Blog
-  tags:
-- [React, typescript, Context API]
+  - Blog
+tags:
+  - [React, typescript, Context API]
 
 toc: true
 toc_sticky: false
 
 date: 2022-12-04
 last_modified_at: 2022-12-04
-
 ---
 
 <br><br>

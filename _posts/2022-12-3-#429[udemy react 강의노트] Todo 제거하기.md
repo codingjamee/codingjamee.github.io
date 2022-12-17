@@ -3,17 +3,15 @@ title: "#429[udemy react 강의노트] Todo 제거하기"
 excerpt: "React typescript ref useRef"
 published: true
 categories:
-
-- Blog
-  tags:
-- [React, typescript, useRef]
+  - Blog
+tags:
+  - [React, typescript, useRef]
 
 toc: true
 toc_sticky: false
 
 date: 2022-12-03
 last_modified_at: 2022-12-03
-
 ---
 
 <br><br>
