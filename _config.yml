@@ -33,6 +33,20 @@ theme: minima
 plugins:
   - jekyll-feed
 futrue: true
+category_list:
+  [
+    nodejs,
+    javascript,
+    tip,
+    diary,
+    linux,
+    chatbot,
+    php,
+    publishing,
+    jekyll,
+    sql,
+    error,
+  ]
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
