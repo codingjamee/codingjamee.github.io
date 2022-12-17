@@ -1,4 +1,6 @@
 ---
+layout: post
+categories: ["udemy","react-study"]
 title: "#427[udemy react 강의노트] state및 typescript 관리하기"
 excerpt: "React typescript ref useRef"
 published: true

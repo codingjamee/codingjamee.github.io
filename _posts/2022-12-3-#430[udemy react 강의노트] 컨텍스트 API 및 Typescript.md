@@ -1,4 +1,6 @@
 ---
+layout: post
+categories: ["udemy","react-study"]
 title: "#430[udemy react 강의노트] 컨텍스트 API 및 Typescript"
 excerpt: "React typescript context api"
 published: true

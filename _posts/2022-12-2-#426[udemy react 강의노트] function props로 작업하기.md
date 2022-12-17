@@ -1,4 +1,6 @@
 ---
+layout: post
+categories: ["udemy","react-study"]
 title: "#426[udemy react 강의노트] function props로 작업하기"
 excerpt: "React typescript ref useRef"
 published: true

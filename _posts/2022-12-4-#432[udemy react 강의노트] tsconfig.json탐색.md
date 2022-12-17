@@ -1,5 +1,6 @@
 ---
-layout: udemy-react
+layout: post
+categories: ["udemy","react-study"]
 title: "#432[udemy react 강의노트] tsconfig.json탐색"
 excerpt: "React typescript context api"
 published: true

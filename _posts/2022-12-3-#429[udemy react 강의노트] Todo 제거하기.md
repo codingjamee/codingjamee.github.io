@@ -1,4 +1,6 @@
 ---
+layout: post
+categories: ["udemy","react-study"]
 title: "#429[udemy react 강의노트] Todo 제거하기"
 excerpt: "React typescript ref useRef"
 published: true

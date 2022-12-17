@@ -1,4 +1,6 @@
 ---
+layout: post
+categories: ["udemy","react-study"]
 title: "#447[udemy react 강의노트] firebase query 탐색기능"
 excerpt: "React firebase query"
 published: true
