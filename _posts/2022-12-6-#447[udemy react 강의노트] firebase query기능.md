@@ -1,21 +1,17 @@
 ---
-layout: post
-categories: ["udemy","react-study"]
 title: "#447[udemy react 강의노트] firebase query 탐색기능"
 excerpt: "React firebase query"
 published: true
 categories:
-
-- Blog
-  tags:
-- [React, firebase, query]
+  - Blog
+tags:
+  - [React, firebase, query]
 
 toc: true
 toc_sticky: false
 
 date: 2022-12-06
 last_modified_at: 2022-12-06
-
 ---
 
 # firebase query 탐색기능
