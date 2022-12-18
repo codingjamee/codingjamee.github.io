@@ -2,13 +2,13 @@
 # Owner's Personal Information
 ###########################################################
 # This is your brand name
-brand: "Your Brand"
+brand: "Jenner의 코딩공부"
 
 # text below the brand name
-brand_sub_text: "$site_sample"
+brand_sub_text: "초보개발자 Jenner"
 
 # used for seo meta post author (if it's not defined in post)
-name: "Your Name"
+name: "Jenner"
 
 # home page top header texts
 home:
@@ -19,7 +19,7 @@ home:
 
 # about page sub title
 about:
-  sub_title: "$site_sample"
+  sub_title: "초보개발자 Jenner"
 
 # if you don't want to add copyright year, comment or leave it blank.
 # the year during which the claimed copyright for the work was first asserted.
@@ -42,14 +42,14 @@ creative_commons:
 # seo meta this is needed for each language
 # If meta_description is not defined in front matter, it's created from (post / page) content,
 # if it has no content, this will be used for page description. It is also used in manifest.json
-meta_common_description: "Your meta description."
+meta_common_description: "초보개발자 Jenner"
 
 # contact options (side nav bottom and about page)
 # the order of the items will be shown as here.
 # comment to remove any contact item
 contacts:
-  #- github: ""
-  #- email: ""
+  - github: "https://github.com/codingjamee"
+  - email: "codingjamee@gmail.com"
   #- linkedin: ""
   #- twitter: ""
   #- mastodon: ""
